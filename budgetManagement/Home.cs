@@ -30,7 +30,7 @@ namespace budgetManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OperationGrid form = new OperationGrid(acc.Operations);
+            OperationGrid form = new OperationGrid(acc);
 
             // FORMULAIRE MODAL  
             form.ShowDialog();
@@ -39,7 +39,7 @@ namespace budgetManagement
         private void Home_Load(object sender, EventArgs e)
         {
             // register listener
-            acc.Operations.ListChanged += Operations_ListChanged;
+            acc.ListChanged += Operations_ListChanged;
 
             // set initial values
             label3.Text = acc.GetCurrentBalance().ToString() + " €";

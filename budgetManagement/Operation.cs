@@ -10,27 +10,27 @@ namespace budgetManagement
 {
     public class Operation
     {
-        public double amount { get; set; }
-        public string title { get; set; }
-        public DateTime date { get; set; }
+        public double Amount { get; set; }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
  
         public Operation()
         {
-            title = "";
-            amount = 0;
-            date = DateTime.Now;
+            Title = "";
+            Amount = 0;
+            Date = DateTime.Now;
         }
 
         public Operation(string t, double a, DateTime d)
         {
-            title = t;
-            amount = a;
-            date = d;
+            Title = t;
+            Amount = a;
+            Date = d;
         }
 
         public override string ToString()
         {
-            return "{ " + title + ", " + amount + ", " + date.ToShortDateString() + " }";
+            return "{ " + Title + ", " + Amount + ", " + Date.ToShortDateString() + " }";
         }
 
         internal bool IsValid()
@@ -40,17 +40,17 @@ namespace budgetManagement
 
         internal bool IsValidTitle()
         {
-            return title != "";
+            return Title != "";
         }
 
         internal bool IsValidAmount()
         {
-            return amount != 0;
+            return Amount != 0;
         }
 
         internal bool IsValidDate()
         {
-            return date != null;
+            return Date != null;
         }
     }
 }

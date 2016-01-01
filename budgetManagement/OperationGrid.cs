@@ -12,15 +12,39 @@ namespace budgetManagement
 {
     public partial class OperationGrid : Form
     {
-        public OperationGrid(Object datasource)
+        private Account acc;
+
+        public OperationGrid(Account account)
         {
             InitializeComponent();
-            dataGridView.DataSource = datasource;
+            this.acc = account;
+
+            dataGridView.DataSource = this.acc;
         }
 
         private void OperationGrid_Load(object sender, EventArgs e)
         {
-            
+        }
+
+        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            this.acc.ResetBindings();
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewColumn column = dataGridView.Columns[e.ColumnIndex];
+            if(column.DataPropertyName == "Date")
+            {
+                DateTime date = (DateTime)e.Value;
+                e.Value = date.ToShortDateString();
+            }
+            else if(column.DataPropertyName == "Amount")
+            {
+                double amount = (double)e.Value;
+                if (amount < 0)
+                    e.CellStyle.ForeColor = Color.DarkRed;
+            }
         }
     }
 }

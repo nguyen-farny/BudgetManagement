@@ -135,7 +135,7 @@
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(200, 35);
             this.dateTimePicker.TabIndex = 3;
-            this.dateTimePicker.Value = new System.DateTime(2015, 12, 4, 15, 7, 32, 0);
+            this.dateTimePicker.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             // 
             // dataSet1
             // 

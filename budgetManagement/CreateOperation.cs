@@ -17,7 +17,9 @@ namespace budgetManagement
         public CreateOperation(Account account)
         {
             InitializeComponent();
-            this.acc = account; 
+            this.acc = account;
+
+            dateTimePicker.Value = DateTime.Now;
         }
 
         private void Ajouter_Click(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace budgetManagement
             Operation o = GetOperation();
             if (o.IsValid())
             {
-                acc.Operations.Add(o);
+                acc.Add(o);
                 this.Close();
             }
             else
