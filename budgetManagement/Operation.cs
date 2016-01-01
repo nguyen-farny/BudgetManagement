@@ -31,6 +31,26 @@ namespace budgetManagement
         public override string ToString()
         {
             return "{ " + title + ", " + amount + ", " + date.ToShortDateString() + " }";
-        } 
+        }
+
+        internal bool IsValid()
+        {
+            return IsValidTitle() && IsValidAmount() && IsValidDate();
+        }
+
+        internal bool IsValidTitle()
+        {
+            return title != "";
+        }
+
+        internal bool IsValidAmount()
+        {
+            return amount != 0;
+        }
+
+        internal bool IsValidDate()
+        {
+            return date != null;
+        }
     }
 }

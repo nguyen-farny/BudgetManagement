@@ -22,26 +22,60 @@ namespace budgetManagement
 
         private void Ajouter_Click(object sender, EventArgs e)
         {
+            Operation o = GetOperation();
+            if (o.IsValid())
+            {
+                acc.Operations.Add(o);
+                this.Close();
+            }
+            else
+            {
+                ValidateChildren();
+            }
+        }
+
+        private Operation GetOperation()
+        {
             string title = titreBox.Text;
-            double amount = double.Parse(montantBox.Text);
+            double amount = decimal.ToDouble(montantBox.Value);
             DateTime date = dateTimePicker.Value;
 
             Operation o = new Operation(title, amount, date);
-
-            acc.Operations.Add(o);
-
-            // MessageBox.Show("Vous venez d'ajouter l'opération : " + o.ToString());
-            this.Close();
+            return o;
         }
-       
+
         private void Annuler_Click_1(object sender, EventArgs e)
         {
             this.Close(); 
         }
 
-        private void CreateOperation_Load(object sender, EventArgs e)
+        private void titreBox_Validating(object sender, CancelEventArgs e)
         {
-
+            Operation o = GetOperation();
+            if (!o.IsValidTitle())
+                titreBox.BackColor = Color.LightPink;
+            else
+                titreBox.BackColor = Color.White;
         }
+
+        private void titreBox_TextChanged(object sender, EventArgs e)
+        {
+            titreBox_Validating(sender, null);
+        }
+
+        private void montantBox_Validating(object sender, CancelEventArgs e)
+        {
+            Operation o = GetOperation();
+            if (!o.IsValidAmount())
+                montantBox.BackColor = Color.LightPink;
+            else
+                montantBox.BackColor = Color.White;
+        }
+
+        private void montantBox_ValueChanged(object sender, EventArgs e)
+        {
+            montantBox_Validating(sender, null); 
+        }
+
     }
 }

@@ -67,7 +67,7 @@
             this.Ajouter.Location = new System.Drawing.Point(84, 238);
             this.Ajouter.Name = "Ajouter";
             this.Ajouter.Size = new System.Drawing.Size(90, 40);
-            this.Ajouter.TabIndex = 3;
+            this.Ajouter.TabIndex = 4;
             this.Ajouter.Text = "Ajouter";
             this.Ajouter.UseVisualStyleBackColor = false;
             this.Ajouter.Click += new System.EventHandler(this.Ajouter_Click);
@@ -80,7 +80,9 @@
             this.titreBox.Location = new System.Drawing.Point(168, 36);
             this.titreBox.Name = "titreBox";
             this.titreBox.Size = new System.Drawing.Size(200, 40);
-            this.titreBox.TabIndex = 5;
+            this.titreBox.TabIndex = 1;
+            this.titreBox.TextChanged += new System.EventHandler(this.titreBox_TextChanged);
+            this.titreBox.Validating += new System.ComponentModel.CancelEventHandler(this.titreBox_Validating);
             // 
             // Annuler
             // 
@@ -95,7 +97,7 @@
             this.Annuler.Location = new System.Drawing.Point(236, 238);
             this.Annuler.Name = "Annuler";
             this.Annuler.Size = new System.Drawing.Size(90, 40);
-            this.Annuler.TabIndex = 8;
+            this.Annuler.TabIndex = 5;
             this.Annuler.Text = "Annuler";
             this.Annuler.UseVisualStyleBackColor = false;
             this.Annuler.Click += new System.EventHandler(this.Annuler_Click_1);
@@ -132,7 +134,7 @@
             this.dateTimePicker.Location = new System.Drawing.Point(168, 162);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(200, 35);
-            this.dateTimePicker.TabIndex = 11;
+            this.dateTimePicker.TabIndex = 3;
             this.dateTimePicker.Value = new System.DateTime(2015, 12, 4, 15, 7, 32, 0);
             // 
             // dataSet1
@@ -155,9 +157,11 @@
             -2147483648});
             this.montantBox.Name = "montantBox";
             this.montantBox.Size = new System.Drawing.Size(200, 35);
-            this.montantBox.TabIndex = 12;
+            this.montantBox.TabIndex = 2;
             this.montantBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.montantBox.ThousandsSeparator = true;
+            this.montantBox.ValueChanged += new System.EventHandler(this.montantBox_ValueChanged);
+            this.montantBox.Validating += new System.ComponentModel.CancelEventHandler(this.montantBox_Validating);
             // 
             // CreateOperation
             // 
@@ -181,7 +185,6 @@
             this.Name = "CreateOperation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajouter une opération";
-            this.Load += new System.EventHandler(this.CreateOperation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.montantBox)).EndInit();
             this.ResumeLayout(false);
