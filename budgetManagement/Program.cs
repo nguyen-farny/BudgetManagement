@@ -18,18 +18,26 @@ namespace budgetManagement
         [STAThread]
         public static void Main()
         {
-            // 1) Try to load saved data
-
-            // 2) If nothing saved, create a new account
-            Account account = GetSavedAccount();
-            if(account == null)
-                account = CreateNewAccount();
-
-            // 3) Register a listener on account, and save automatically when it is updated
-            account.ListChanged += OnAccountUpdated;
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // 1) Try to load saved data
+            Account account = GetSavedAccount();
+
+            // 2) If nothing saved, create a new account
+            if (account == null)
+                account = CreateNewAccount();
+
+            // 3) No account data, quit application
+            if (account == null)
+                return;
+
+            // 4) Save newly created account
+            SaveAccount(account); 
+
+            // 5) Register a listener on account, and save automatically when it is updated
+            account.ListChanged += OnAccountUpdated;
+
             Application.Run(new Home(account));
         }
 
@@ -65,9 +73,10 @@ namespace budgetManagement
 
         private static Account CreateNewAccount()
         {
-            Account newAccount = new Account();
-            newAccount.Name = "Compte courant";
-            return newAccount; 
+            CreateAccount createAccount = new CreateAccount();
+            Application.Run(createAccount);
+
+            return createAccount.Account; 
         }
     }
 }

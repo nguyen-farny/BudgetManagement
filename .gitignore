@@ -50,3 +50,5 @@ Temporary Items
 *.csproj.*
 *.Cache
 TemporaryGeneratedFile_*
+*/bin/*
+*/obj/*
