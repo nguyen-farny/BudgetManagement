@@ -19,7 +19,8 @@ namespace budgetManagement
             InitializeComponent();
             this.acc = account;
 
-            dataGridView.DataSource = this.acc;
+            dataGridView.DataSource = account;
+            this.Text = account.Name;
         }
 
         private void OperationGrid_Load(object sender, EventArgs e)

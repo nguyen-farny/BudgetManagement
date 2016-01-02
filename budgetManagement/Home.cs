@@ -20,20 +20,26 @@ namespace budgetManagement
             this.acc = account; 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void createOperation_Click(object sender, EventArgs e)
         {
             CreateOperation form = new CreateOperation(acc);
-
-            // FORMULAIRE MODAL  
-            form.ShowDialog();
+            form.ShowDialog(); // (modal)
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void detail_Click(object sender, EventArgs e)
         {
-            OperationGrid form = new OperationGrid(acc);
-
-            // FORMULAIRE MODAL  
-            form.ShowDialog();
+            string name = "Detail Of " + acc.Name;
+            Form form = Application.OpenForms[name];
+            if (form == null)
+            {
+                form = new OperationGrid(acc);
+                form.Name = name;
+                form.Show(); // (not modal)
+            }
+            else
+            {
+                form.Focus();
+            }
         }
 
         private void Home_Load(object sender, EventArgs e)
@@ -42,14 +48,14 @@ namespace budgetManagement
             acc.ListChanged += Operations_ListChanged;
 
             // set initial values
-            label3.Text = acc.GetCurrentBalance().ToString() + " €";
-            label1.Text = acc.Name; 
+            labelSolde.Text = acc.GetCurrentBalance().ToString() + " €";
+            groupBox1 .Text = acc.Name; 
         }
 
         private void Operations_ListChanged(object sender, ListChangedEventArgs e)
         {
             // display result
-            label3.Text = acc.GetCurrentBalance().ToString()+ " €";
+            labelSolde.Text = acc.GetCurrentBalance().ToString()+ " €";
         }
     }
 }

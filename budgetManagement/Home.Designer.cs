@@ -28,77 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelSolde = new System.Windows.Forms.Label();
+            this.createOperation = new System.Windows.Forms.Button();
+            this.detail = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // groupBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Compte Courant";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.labelSolde);
+            this.groupBox1.Controls.Add(this.createOperation);
+            this.groupBox1.Controls.Add(this.detail);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(568, 172);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // labelSolde
+            // 
+            this.labelSolde.AutoSize = true;
+            this.labelSolde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSolde.Location = new System.Drawing.Point(188, 99);
+            this.labelSolde.Name = "labelSolde";
+            this.labelSolde.Size = new System.Drawing.Size(45, 29);
+            this.labelSolde.TabIndex = 10;
+            this.labelSolde.Text = "0 €";
+            // 
+            // createOperation
+            // 
+            this.createOperation.Location = new System.Drawing.Point(332, 99);
+            this.createOperation.Name = "createOperation";
+            this.createOperation.Size = new System.Drawing.Size(187, 40);
+            this.createOperation.TabIndex = 9;
+            this.createOperation.Text = "Ajouter une opération";
+            this.createOperation.UseVisualStyleBackColor = true;
+            this.createOperation.Click += new System.EventHandler(this.createOperation_Click);
+            // 
+            // detail
+            // 
+            this.detail.Location = new System.Drawing.Point(332, 32);
+            this.detail.Name = "detail";
+            this.detail.Size = new System.Drawing.Size(187, 40);
+            this.detail.TabIndex = 8;
+            this.detail.Text = "Voir le détail du compte";
+            this.detail.UseVisualStyleBackColor = true;
+            this.detail.Click += new System.EventHandler(this.detail_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 108);
+            this.label2.Location = new System.Drawing.Point(50, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 29);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Soldes: ";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(49, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 56);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Voir le détail du compte";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(260, 241);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 56);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Ajouter une opération";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(182, 108);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 29);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 379);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(593, 306);
+            this.Controls.Add(this.groupBox1);
             this.Name = "Home";
-            this.Text = "Home";
+            this.Text = "Budget Management";
             this.Load += new System.EventHandler(this.Home_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,10 +111,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label labelSolde;
+        private System.Windows.Forms.Button createOperation;
+        private System.Windows.Forms.Button detail;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label3;
     }
 }
