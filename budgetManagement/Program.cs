@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,23 +16,58 @@ namespace budgetManagement
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
-            Account acc = new Account();
-            acc.Name = "Compte courant"; 
+            // 1) Try to load saved data
 
-            /*
-            BindingList<Operation> operations = new BindingList<Operation>();
-            operations.Add(new Operation("Loyer", 1120, DateTime.Now));
-            operations.Add(new Operation("Telephone", 4, DateTime.Now));
-            */
+            // 2) If nothing saved, create a new account
+            Account account = GetSavedAccount();
+            if(account == null)
+                account = CreateNewAccount();
+
+            // 3) Register a listener on account, and save automatically when it is updated
+            account.ListChanged += OnAccountUpdated;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new CreateOperation());
+            Application.Run(new Home(account));
+        }
 
-            //Application.Run(new OperationGrid(operations));
-            Application.Run(new Home(acc));
+        private static void SaveAccount(Account acc)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("AccountInfo.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, acc);
+            stream.Close();
+        }
+
+        private static void OnAccountUpdated(object sender, ListChangedEventArgs e)
+        {
+            SaveAccount(sender as Account);
+        }
+
+        private static Account GetSavedAccount()
+        {
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("AccountInfo.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                Account account = (Account)formatter.Deserialize(stream);
+                stream.Close();
+
+                return account;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
+
+        private static Account CreateNewAccount()
+        {
+            Account newAccount = new Account();
+            newAccount.Name = "Compte courant";
+            return newAccount; 
         }
     }
 }

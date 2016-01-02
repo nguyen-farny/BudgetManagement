@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace budgetManagement
 {
+    [Serializable]
     public class Operation
     {
         public double Amount { get; set; }

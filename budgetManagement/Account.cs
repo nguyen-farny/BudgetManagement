@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace budgetManagement
 {
+    [Serializable]
     public class Account : BindingList<Operation>
     {
         public string Name { get; set; }
@@ -31,8 +32,14 @@ namespace budgetManagement
         }
 
         #region Sorting
+
+        [NonSerialized]
         private bool _IsSortedCore = false;
+
+        [NonSerialized]
         private ListSortDirection _SortDirectionCore = ListSortDirection.Ascending;
+
+        [NonSerialized]
         private PropertyDescriptor _SortPropertyCore = null;
 
         protected override bool SupportsSortingCore
